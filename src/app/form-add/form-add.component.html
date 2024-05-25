@@ -1,10 +1,6 @@
 <div class="w-[300px] mx-auto mb-5 py-7 border rounded-sm px-5">
   <h1 class="text-[20px] font-semibold text-center py-5">Thêm sản phẩm</h1>
   <div class="flex gap-1 flex-col justify-center my-2">
-    <label for="" class="font-semibold">ID</label>
-    <input type="text" class="border rounded-sm  shadow-sm shadow-gray-500" [(ngModel)]="productForm.id">
-  </div>
-  <div class="flex gap-1 flex-col justify-center my-2">
     <label for="" class="font-semibold">Tên sản phẩm</label>
     <input type="text" class="border rounded-sm  shadow-sm shadow-gray-500" [(ngModel)]="productForm.name">
   </div>
@@ -20,5 +16,8 @@
     <label for="" class="font-semibold">Mô tả sản phẩm</label>
     <input type="text" class="border rounded-sm  shadow-sm shadow-gray-500" [(ngModel)]="productForm.description">
   </div>
-  <button class="border rounded-sm shadow-sm shadow-gray-700 hover:bg-gray-700 transition ease-in-out duration-500" (click)="addProduct()">Thêm</button>
+  <div class="flex justify-between">
+    <button class="border px-5 py-1 rounded-sm shadow-sm shadow-gray-700 hover:bg-gray-700 transition ease-in-out duration-500" (click)="addProduct()">Thêm</button>
+    <button class="border px-5 py-1 rounded-sm shadow-sm shadow-gray-700 hover:bg-gray-700 transition ease-in-out duration-500" (click)="onHidden()">Ẩn</button>
+  </div>
 </div>

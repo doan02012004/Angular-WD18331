@@ -34,10 +34,10 @@
 <!-- Table -->
 <hr />
 <div *ngIf="checkFormAdd">
-  <app-form-add (newProduct)="getProduct($event)"></app-form-add>
+  <app-form-add (newProduct)="getProduct($event)" (close)="getCloseForm($event)"></app-form-add>
 </div>
 <div class="max-w-4xl mx-auto">
-  <button (click)="onOpenForm()">Thêm sản phẩm</button>
+  <button class="border my-5 px-5 py-1 rounded-sm shadow-sm shadow-gray-700 hover:bg-gray-700 transition ease-in-out duration-500" (click)="onOpenForm()">Thêm sản phẩm</button>
     <div class="grid grid-cols-12 gap-8">
 
         <table class="text-center items-center" [ngClass]="checkDetail?'col-span-8' :'col-span-12'">
@@ -61,7 +61,7 @@
                     <td>{{product.price}}</td>
                     <td>{{product.description}}</td>
                     <td>
-                      <button class="border rounded text-sm shadow-sm shadow-gray-700">delete</button>
+                      <button class="border rounded text-sm shadow-sm shadow-gray-700" (click)="onRemove(i)">delete</button>
                       <button class="border rounded text-sm shadow-sm shadow-gray-700 ml-5" (click)="onView(product)">info</button>
                     </td>
                 </tr>
@@ -71,5 +71,5 @@
             <app-product-detail [product]="productDetail" (newHidden)="getHidden($event)" ></app-product-detail>
         </div>
     </div>
-</div>
+
 

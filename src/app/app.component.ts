@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { FormAddComponent } from './form-add/form-add.component';
+import { ProductService } from './services/product.service';
 
 
 @Component({
@@ -18,41 +19,20 @@ export class AppComponent {
   productDetail:any = {};
   checkDetail:boolean = false
   checkFormAdd: boolean = false
+  products!: Iproduct[];
 
-    products: Iproduct[] = [
-      {
-        id: 1,
-        name: "Mì cay Hàn Quốc",
-        image: "https://picsum.photos/id/20/400/300",
-        price: 200,
-        description: "Mì Cay"
-      },
-      {
-        id: 2,
-        name: "Bún chả Hà Nội",
-        image: "https://picsum.photos/id/18/400/300",
-        price: 300,
-        description: "Bún chả"
-      },
-      {
-        id: 3,
-        name: "Xúc xích nướng",
-        image: "https://picsum.photos/id/21/400/300",
-        price: 400,
-        description: "Xúc xích"
-      },
-      {
-        id: 4,
-        name: "Xiên chả cá",
-        image: "https://picsum.photos/id/23/400/300",
-        price: 400,
-        description: "Chả Cá"
-      }
-    ];
-
+  constructor(private ProductServices: ProductService ){
+      this.ProductServices.getAll().subscribe(products =>{ this.products=products})
+      
+  }
     remove(id:number|string){
     if(confirm('Bạn có muốn xóa không?'))
       this.products = this.products.filter((item)=> item.id != id)
+    }
+    onRemove(i: number){
+      if(confirm('Bạn có muốn xóa không?')){
+        this.products = this.products.filter((item,index)=> index != i)
+      }
     }
     onView(product:Iproduct){
       this.productDetail = product
@@ -69,5 +49,7 @@ export class AppComponent {
     onOpenForm(){
       this.checkFormAdd = true
     }
-
+    getCloseForm(check:boolean){
+      this.checkFormAdd = check
+    }
 }
